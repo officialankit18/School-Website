@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mary Jesus Education Centre — Barra, Kanpur</title>
+  <meta name="description" content="Mary Jesus Education Centre, Barra, Kanpur — Educating with Faith, Knowledge, and Excellence. Admissions Open."/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      /* Yellow + White theme with modern accents */
+      --primary: #FFC107;           /* Amber */
+      --primary-600: #FFB300;       /* Deeper amber for hover/active */
+      --primary-700: #FFA000;
+      --primary-100: #FFF7DC;
+
+      --white: #ffffff;
+      --bg: #ffffff;
+      --muted: #f6f7fb;
+      --card: #ffffff;
+
+      --text: #0f172a;              /* Navy-ish dark */
+      --text-light: #4b5563;
+
+      --accent-teal: #00C2A8;
+      --accent-coral: #FF6B6B;
+      --accent-lime: #A3E635;
+      --accent-indigo: #4F46E5;
+
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --ring: 0 0 0 3px rgba(255,193,7,0.35);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff 0%, var(--muted) 100%);
+      overflow-x: hidden; /* prevent accidental side scroll on small screens */
+    }
+    img{ max-width: 100%; display: block; }
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(1200px, 92vw); margin-inline: auto; }
+
+    /* Top Header (Branding + Motto/Login) */
+    .topbar{
+      background: var(--white);
+      padding: 14px 0;
+      border-bottom: 1px solid #eef0f4;
+    }
+    .brand{
+      display: flex; align-items: center; gap: 14px;
+    }
+    .brand img.logo{
+      width: 104px; height: 104px; /* doubled from 52px */
+      object-fit: contain; border-radius: 10px; background: var(--primary-100);
+      box-shadow: 0 8px 16px rgba(255,193,7,0.2);
+    }
+    .brand .name{
+      display: flex; flex-direction: column; line-height: 1.1;
+    }
+    .brand .name h1{
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: .2px;
+    }
+    .brand .name span{
+      font-size: 13px; color: var(--text-light);
+    }
+    .topbar-inner{
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .motto{
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .motto .pill{
+      background: linear-gradient(90deg, var(--primary) 0%, #FFE082 100%);
+      color: #2b2b2b;
+      padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 13px;
+      display: inline-flex; gap: 8px; align-items: center;
+      box-shadow: 0 10px 18px rgba(255, 193, 7, .25);
+    }
+    .btn{
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--text); color: var(--white); font-weight: 600;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn:focus-visible{ outline: none; box-shadow: var(--ring); }
+    .btn-outline{
+      background: transparent; color: var(--text); border: 2px solid var(--text);
+    }
+    .btn-yellow{ background: var(--primary); color: #1b1b1b; }
+    .btn-yellow:hover{ background: var(--primary-600); }
+
+    /* Navbar (updated: yellow gradient + no side scroll + wrap) */
+    .navbar{
+      position: sticky; top: 0; z-index: 999;
+      background: linear-gradient(90deg, var(--primary-600), var(--primary));
+      border-bottom: none;
+      backdrop-filter: none;
+    }
+    .nav-inner{
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 10px 0;
+    }
+    .menu{
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap; /* wrap to stop horizontal scroll */
+    }
+    .menu > li{
+      list-style: none; position: relative;
+    }
+    .menu > li > a{
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 10px; color: #1b1b1b; /* dark text on yellow */
+      font-weight: 600; font-size: 14px; white-space: nowrap;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .menu > li > a:hover{
+      background: #FFE082;
+      color: #111827;
+    }
+    /* Dropdown */
+    .dropdown .submenu{
+      position: absolute; top: 100%; left: 0;
+      background: var(--white); border-radius: 12px; padding: 8px;
+      box-shadow: var(--shadow); min-width: 220px; display: none;
+    }
+    .dropdown:hover .submenu{ display: block; }
+    .submenu a{
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px; color: var(--text-light); font-weight: 600;
+    }
+    .submenu a:hover{
+      background: var(--primary-100); color: #1f2937;
+    }
+    /* Mobile Nav */
+    .nav-toggle{
+      display: none; background: var(--primary); color: #1b1b1b; border: none; border-radius: 10px; padding: 10px 12px; font-weight: 700;
+    }
+    .nav-toggle i{ margin-right: 6px; }
+    @media (max-width: 980px){
+      .nav-inner{ flex-wrap: wrap; }
+      .menu{
+        width: 100%; flex-direction: column; align-items: stretch; gap: 6px;
+        max-height: 0; overflow: hidden; transition: max-height .35s ease;
+      }
+      .menu.open{ max-height: 80vh; }
+      .menu > li > a{ border-radius: 12px; padding: 12px; }
+      .dropdown .submenu{ position: static; display: none; box-shadow: none; padding: 4px 0; }
+      .dropdown.open .submenu{ display: block; }
+      .nav-toggle{ display: inline-flex; align-items: center; }
+    }
+
+    /* Hero Slider — VanAmriti-style fade */
+    .hero{
+      position: relative;
+      width: 100%;
+      height: clamp(60vh, 75vh, 82vh);
+      min-height: 420px;
+      background: #000;
+      overflow: hidden;
+    }
+    .slides{
+      position: relative;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .slide{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .7s ease;
+    }
+    .slide.active{
+      opacity: 1;
+      z-index: 1;
+    }
+    .slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;        /* fills nicely like reference */
+      object-position: center center;
+      transform: none !important;
+      transition: none !important;
+      filter: brightness(.82);
+    }
+    .overlay{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,0) 55%);
+      pointer-events: none;
+    }
+    /* Bottom-left caption */
+    .hero-content{
+      position: absolute;
+      left: clamp(16px, 4vw, 48px);
+      bottom: clamp(16px, 4vw, 48px);
+      right: auto; top: auto;
+      display: block;
+      text-align: left;
+      color: #fff;
+      padding: 0;
+      z-index: 2;
+    }
+    .hero-content .inner{
+      max-width: min(90vw, 720px);
+      animation: none !important;
+    }
+    .hero h2{
+      margin: 0 0 8px;
+      font-size: clamp(22px, 4.6vw, 48px);
+      font-weight: 800;
+      color: #fff;
+    }
+    .hero p{
+      margin: 0 0 14px;
+      font-size: clamp(13px, 2.2vw, 18px);
+      color: #e5e7eb;
+    }
+    .hero .cta{ display: inline-flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Dots + Arrows */
+    .slider-controls{
+      position: absolute; inset-inline: 0; bottom: 12px;
+      display: flex; justify-content: center; gap: 10px; z-index: 2;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px; background: #ffffff80; cursor: pointer;
+    }
+    .dot.active{ background: var(--primary); }
+    .arrows{
+      position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 14px; transform: translateY(-50%); z-index: 2;
+    }
+    .arrow{
+      background: #ffffffd9; border: 0; border-radius: 999px; width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer;
+    }
+
+    /* Reveal Animations */
+    .reveal{ opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show{ opacity: 1; transform: translateY(0); }
+
+    /* Section Generic */
+    section{ padding: clamp(40px, 6vw, 80px) 0; }
+    h3.section-title{
+      font-size: clamp(22px, 2.6vw, 30px); margin: 0 0 16px; font-weight: 800;
+    }
+    p.section-sub{ color: var(--text-light); margin: 0 0 26px; }
+
+    /* Message Section */
+    .messages .block{
+      display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 28px; align-items: center; background: var(--card);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); margin-bottom: 20px;
+    }
+    .messages .block:nth-child(even){ grid-template-columns: 1.4fr 1.1fr; }
+    .msg-photo{
+      aspect-ratio: 4/3; border-radius: 14px; overflow: hidden; position: relative;
+      background: #fff3c4; display: grid; place-items: center;
+    }
+    .msg-photo img{ width: 100%; height: 100%; object-fit: cover; }
+    .msg-content h4{ margin: 4px 0 8px; font-size: 20px; }
+    .msg-content .role{ color: var(--text-light); font-size: 14px; margin-bottom: 10px; }
+    .msg-content p{ color: #374151; line-height: 1.7; }
+
+    @media (max-width: 860px){
+      .messages .block, .messages .block:nth-child(even){
+        grid-template-columns: 1fr; gap: 16px;
+      }
+    }
+
+    /* Highlights & Features */
+    .features{
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .feature-card{
+      background: var(--card); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+      display: grid; gap: 12px;
+    }
+    .feature-card:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .badge{
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 12px;
+      padding: 6px 10px; border-radius: 999px; width: fit-content;
+    }
+    .b-yellow{ background: #FFF3C4; color: #7A4B00; }
+    .b-teal{ background: #E9FFFB; color: #006B61; }
+    .b-coral{ background: #FFE9E9; color: #8A1A1A; }
+    .b-indigo{ background: #ECEBFF; color: #312E81; }
+    .feature-card .title{ font-weight: 800; font-size: 18px; }
+    .feature-card p{ color: var(--text-light); margin: 0; }
+    .thumb{
+      border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: #fff8d6;
+    }
+
+    @media (max-width: 980px){
+      .features{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px){
+      .features{ grid-template-columns: 1fr; }
+    }
+
+    /* Photo Highlights Gallery */
+    .photo-strip{
+      display: grid; gap: 12px;
+    }
+    .strip{
+      display: grid; grid-auto-flow: column; grid-auto-columns: 280px; gap: 12px;
+      overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory;
+    }
+    .strip::-webkit-scrollbar{ height: 8px; }
+    .strip::-webkit-scrollbar-thumb{ background: #e6e6e6; border-radius: 999px; }
+    .ph-item{
+      scroll-snap-align: start; border-radius: 14px; overflow: hidden; position: relative; background: #fff7db;
+    }
+    .ph-item img{ width: 100%; height: 200px; object-fit: cover; display: block; }
+    .ph-item .cap{
+      position: absolute; left: 8px; bottom: 8px; background: #0000007c; color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px; backdrop-filter: blur(2px);
+    }
+
+    /* Footer */
+    footer{
+      background: #0f172a; color: #fff; margin-top: 20px;
+    }
+    .footer-inner{
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; padding: 32px 0;
+    }
+    @media (max-width: 860px){
+      .footer-inner{ grid-template-columns: 1fr; }
+    }
+    .map iframe{
+      width: 100%; height: 300px; border: 0; border-radius: 12px; box-shadow: var(--shadow);
+    }
+    .foot-card{
+      background: #FFC107; border-radius: 12px; padding: 16px; display: grid; gap: 12px;
+    }
+    .foot-card a{ color: #e5e7eb; }
+    .socials{ display: flex; gap: 10px; }
+    .socials a{
+      width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%;
+      background: #0b1224; color: white; transition: transform .2s ease, background .2s ease;
+    }
+    .socials a:hover{ transform: translateY(-2px); background: var(--primary); color: #1b1b1b; }
+
+    .copyright{
+      text-align: center; padding: 12px; border-top: 1px solid #182241; font-size: 13px; color: #cbd5e1;
+    }
+
+    /* Back to Top */
+    #backToTop{
+      position: fixed; right: 14px; bottom: 14px; z-index: 1000;
+      background: var(--primary); color: #1b1b1b; width: 44px; height: 44px; border-radius: 999px; border: 0;
+      display: grid; place-items: center; box-shadow: var(--shadow); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(12px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    #backToTop.show{ opacity: 1; pointer-events: all; transform: translateY(0); }
+
+    /* Utility */
+    .grid-2{ display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+    @media (max-width: 860px){ .grid-2{ grid-template-columns: 1fr; } }
+    .lead{ color: var(--text-light); }
+    .hr{ height: 1px; background: #eee; margin: 10px 0 26px; }
+
+    @keyframes fadeUp{
+      from{ opacity: 0; transform: translateY(10px) }
+      to{ opacity: 1; transform: translateY(0) }
+    }
+
+    /* Accessibility: reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .slides, .slide img, .reveal, .feature-card, .btn, .arrow { transition: none !important; }
+      .hero-content .inner{ animation: none !important; }
+    }
+
+    /* MOBILE HEADER: logo first, name below (right side stays same) */
+    @media (max-width: 680px){
+      .topbar-inner{ align-items: flex-start; }
+      .brand{ flex-direction: column; align-items: flex-start; }
+      .brand .name{ text-align: left; }
+      .motto{ margin-left: auto; } /* keep motto/login on the right side */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img class="logo" src="logo.png" alt="School Logo" />
+        <div class="name">
+          <h1>Mary Jesus Education Centre</h1>
+          <span>Barra, Kanpur • Educating with Faith, Knowledge, and Excellence</span>
+        </div>
+      </div>
+      <div class="motto">
+        <span class="pill"><i class="fa-solid fa-graduation-cap"></i> Faith • Knowledge • Excellence</span>
+        <a class="btn btn-outline" href="https://notice-two-nu.vercel.app/admin/login">
+  <i class="fa-solid fa-right-to-bracket"></i> Admin Login
+</a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainMenu">
+        <i class="fa-solid fa-bars"></i> Menu
+      </button>
+
+      <!-- Compact + grouped to prevent side-scroll -->
+      <ul class="menu" id="mainMenu">
+        <li><a href="#home"><i class="fa-solid fa-house-chimney"></i> Home</a></li>
+        <li><a href="#about"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        <li><a href="#admissions"><i class="fa-solid fa-user-plus"></i> Admissions</a></li>
+        <li><a href="#notice-board"><i class="fa-solid fa-bell"></i> Notice Board</a></li>
+
+        <li class="dropdown">
+          <a href="#academics" class="dropdown-toggle"><i class="fa-solid fa-book-open"></i> Academics <i class="fa-solid fa-chevron-down" style="font-size:12px;"></i></a>
+          <div class="submenu" role="menu" aria-label="Academics submenu">
+            <a href="#syllabus"><i class="fa-solid fa-file-lines"></i> Syllabus</a>
+            <a href="#calendar"><i class="fa-solid fa-calendar-days"></i> Academic Calendar</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#sports" class="dropdown-toggle"><i class="fa-solid fa-school-flag"></i> Campus Life <i class="fa-solid fa-chevron-down" style="font-size:12px;"></i></a>
+          <div class="submenu" role="menu" aria-label="Campus Life submenu">
+            <a href="#sports"><i class="fa-solid fa-football"></i> Sports Corner</a>
+            <a href="#facilities"><i class="fa-solid fa-building-columns"></i> Our Facilities</a>
+            <a href="#co-curricular"><i class="fa-solid fa-people-group"></i> Co-curricular Activities</a>
+            <a href="#gallery"><i class="fa-solid fa-image"></i> Gallery</a>
+            <a href="#infrastructure"><i class="fa-solid fa-city"></i> Infrastructure</a>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#achievements" class="dropdown-toggle"><i class="fa-solid fa-trophy"></i> Achievements & Results <i class="fa-solid fa-chevron-down" style="font-size:12px;"></i></a>
+          <div class="submenu" role="menu" aria-label="Achievements and Results submenu">
+            <a href="#achievements"><i class="fa-solid fa-trophy"></i> Achievements</a>
+            <a href="#results"><i class="fa-solid fa-ranking-star"></i> Results</a>
+          </div>
+        </li>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Fade Slider) -->
+  <section class="hero" id="home" aria-label="Hero section with slider">
+    <div class="slides" id="slides">
+      <div class="slide active">
+        <img src="sport.jpg" alt="Banner image 1">
+        <div class="overlay"></div>
+      </div>
+      <div class="slide">
+        <img src="aa.jpg" alt="Banner image 2">
+        <div class="overlay"></div>
+      </div>
+      <div class="slide">
+        <img src="b.jpg" alt="Banner image 3">
+        <div class="overlay"></div>
+      </div>
+      <div class="slide">
+        <img src="c.jpg" alt="Banner image 4">
+        <div class="overlay"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="inner" id="heroText">
+        <h2>Welcome to Mary Jesus Education Centre</h2>
+        <p>Educating with Faith, Knowledge, and Excellence</p>
+        <div class="cta">
+          <a href="#about" class="btn btn-yellow"><i class="fa-solid fa-circle-play"></i> Learn More</a>
+          <a href="Contact_form.html" class="btn"><i class="fa-solid fa-file-pen"></i> Admissions Open — Apply Now!</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrows">
+      <button class="arrow" id="prevSlide" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="arrow" id="nextSlide" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div class="slider-controls" id="sliderDots" aria-label="Slide indicators"></div>
+  </section>
+
+  <!-- Message Section -->
+  <section class="messages container" id="about">
+    <h3 class="section-title reveal">Messages</h3>
+    <p class="section-sub reveal">From our leadership — inspiring words for students and parents.</p>
+
+    <!-- Director Message -->
+    <div class="block reveal">
+      <div class="msg-photo">
+        <img src="principal.png" alt="Director Photo (placeholder)">
+      </div>
+      <div class="msg-content">
+        <span class="badge b-yellow"><i class="fa-solid fa-user-tie"></i> Message from the Director</span>
+        <h4>“Building character with competence.”</h4>
+        <div class="role">Director, Mary Jesus Education Centre</div>
+        <p>At MJEC, our mission is to nurture curious minds and compassionate hearts. We strive to create a joyful learning environment that blends academic rigor with values and real-world skills.</p>
+      </div>
+    </div>
+
+    <!-- Principal Message -->
+    <div class="block reveal">
+      <div class="msg-content">
+        <span class="badge b-teal"><i class="fa-solid fa-chalkboard-user"></i> Message from the Principal</span>
+        <h4>“Every child can learn, just not on the same day or in the same way.”</h4>
+        <div class="role">Principal, Mary Jesus Education Centre</div>
+        <p>We believe learning should be inclusive, engaging, and future-ready. With smart classrooms, co-curriculars, and sports, our students explore, innovate, and lead with humility.</p>
+      </div>
+      <div class="msg-photo">
+        <img src="principal.png" alt="Principal Photo (placeholder)">
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights & Features -->
+  <section class="container" id="facilities">
+    <h3 class="section-title reveal">Highlights & Features</h3>
+    <p class="section-sub reveal">Modern infrastructure, expert faculty, and a caring environment.</p>
+
+    <div class="features">
+      <div class="feature-card reveal" style="--delay:0">
+        <span class="badge b-yellow"><i class="fa-solid fa-display"></i> Interactive Classrooms</span>
+        <div class="thumb"><img src="c.jpg" alt="Smart classroom (placeholder)"></div>
+        <div class="title">Interactive Learning</div>
+        <p></p>
+      </div>
+
+      <div class="feature-card reveal" style="--delay:.05s">
+        <span class="badge b-teal"><i class="fa-solid fa-users-gear"></i> Experienced Faculty</span>
+        <div class="thumb"><img src="b.jpg" alt="Faculty (placeholder)"></div>
+        <div class="title">Mentors Who Care</div>
+        <p>Certified, passionate educators focused on holistic student development.</p>
+      </div>
+
+      <div class="feature-card reveal" style="--delay:.1s">
+        <span class="badge b-coral"><i class="fa-solid fa-masks-theater"></i> Sports & Cultural</span>
+        <div class="thumb"><img src="trofee.jpg" alt="Events (placeholder)"></div>
+        <div class="title">Beyond the Classroom</div>
+        <p>Annual sports meet, cultural fests, clubs, and activity-based learning.</p>
+      </div>
+
+      <div class="feature-card reveal" style="--delay:.15s">
+        <span class="badge b-indigo"><i class="fa-solid fa-bus"></i> Safe Transport</span>
+        <div class="thumb"><img src="data:image/jpeg;base64,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" alt="Transport (placeholder)"></div>
+        <div class="title">Safe & Reliable</div>
+        <p>GPS-enabled routes, trained staff, and safe transport protocols.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Highlights -->
+  <section class="container" id="gallery">
+    <h3 class="section-title reveal">Photo Highlights</h3>
+    <p class="section-sub reveal">A glimpse into campus life and moments that matter.</p>
+
+    <div class="photo-strip">
+      <div class="strip">
+        <div class="ph-item reveal"><img src="a.png" alt="Assembly (placeholder)"><span class="cap">Morning Assembly</span></div>
+        <div class="ph-item reveal"><img src="project.jpg" alt="Science Lab (placeholder)"><span class="cap">Science Lab</span></div>
+        <div class="ph-item reveal"><img src="trofee.jpg" alt="Sports Day (placeholder)"><span class="cap">Sports Day</span></div>
+        <div class="ph-item reveal"><img src="fest.jpg" alt="Cultural Fest (placeholder)"><span class="cap">Cultural Fest</span></div>
+        <div class="ph-item reveal"><img src="aa.jpg" alt="Library (placeholder)"><span class="cap">Library Time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admissions (Placeholder Section) -->
+  <section class="container" id="admissions">
+    <h3 class="section-title reveal">Admissions</h3>
+    <div class="grid-2">
+      <div class="reveal">
+        <p class="lead">Admissions are open for the academic session 2025–26. Nursery to Class X.</p>
+        <div class="hr"></div>
+        <p><i class="fa-solid fa-circle-check" style="color:var(--accent-teal)"></i> Prospectus available at school office</p>
+        <p><i class="fa-solid fa-circle-check" style="color:var(--accent-teal)"></i> Documents: Birth Certificate, Transfer Certificate (if applicable), 2 Photos</p>
+        <p><i class="fa-solid fa-circle-check" style="color:var(--accent-teal)"></i> Entrance interaction for select classes</p>
+        <br>
+        <a href="#" class="btn btn-yellow"><i class="fa-solid fa-file-arrow-down"></i> Download Form</a>
+        <a href="#contact" class="btn"><i class="fa-solid fa-phone"></i> Contact Office</a>
+      </div>
+      <div class="reveal">
+        <div class="notice">
+          <div class="meta">
+            <span class="tag">New</span>
+            <span><i class="fa-regular fa-clock"></i> Updated today</span>
+          </div>
+          <strong>Admissions Help Desk:</strong>
+          <p>Mon–Sat, 9:00 AM – 1:30 PM. Please bring necessary documents for verification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="container" id="contact">
+    <h3 class="section-title reveal">Contact Us</h3>
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="foot-card">
+          <strong>School Office</strong>
+          <p>Mary Jesus Education Centre, Barra, Kanpur, Uttar Pradesh</p>
+          <p><i class="fa-solid fa-phone"></i> +91-98765-43210</p>
+          <p><i class="fa-solid fa-envelope"></i> info@mjec.in</p>
+          <p><i class="fa-solid fa-clock"></i> Mon–Sat: 8:00 AM – 2:00 PM</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="foot-card">
+          <strong>Quick Links</strong>
+          <a href="#admissions"><i class="fa-solid fa-angles-right"></i> Admissions</a>
+          <a href="#notice-board"><i class="fa-solid fa-angles-right"></i> Notice Board</a>
+          <a href="#academics"><i class="fa-solid fa-angles-right"></i> Academics</a>
+          <a href="#gallery"><i class="fa-solid fa-angles-right"></i> Gallery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="map">
+        <iframe
+          title="MJEC Barra Kanpur Map"
+          src="https://www.google.com/maps?q=Mary%20Jesus%20Education%20Centre%20Barra%20Kanpur&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="foot-card">
+        <strong>Connect with Us</strong>
+        <p>Stay updated via our social channels.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/mjeckanpur/" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/mjeckanpur/?hl=en" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCLOCP4qm-UgeUe3o5-WmBPA" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© 2025 Mary Jesus Education Centre | All Rights Reserved.</div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    // Mobile Nav Toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainMenu = document.getElementById('mainMenu');
+    navToggle?.addEventListener('click', () => {
+      const open = mainMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Dropdown support on mobile (tap to open)
+    document.querySelectorAll('.dropdown > a').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        if (window.matchMedia('(max-width: 980px)').matches) {
+          e.preventDefault();
+          trigger.parentElement.classList.toggle('open');
+        }
+      });
+    });
+
+    // Slider (VanAmriti-like fade slider)
+    const heroEl   = document.querySelector('.hero');
+    const slidesWrap = document.getElementById('slides');
+    const slides   = Array.from(document.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('sliderDots');
+    const prevBtn  = document.getElementById('prevSlide');
+    const nextBtn  = document.getElementById('nextSlide');
+    const heroText = document.getElementById('heroText');
+
+    let current = 0;
+    let timer;
+
+    function renderDots(){
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === current ? ' active' : '');
+        dot.addEventListener('click', () => show(i));
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    function show(i){
+      slides[current].classList.remove('active');
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      renderDots();
+      rotateHeroText(current);
+    }
+
+    function next(){ show(current + 1); }
+    function prev(){ show(current - 1); }
+
+    prevBtn?.addEventListener('click', prev);
+    nextBtn?.addEventListener('click', next);
+
+    // Caption text rotate (optional)
+    const heroLines = [
+      {h: 'Welcome to Mary Jesus Education Centre', p: 'Educating with Faith, Knowledge, and Excellence'},
+      {h: 'Admissions Open — Apply Now!', p: 'Be part of a nurturing, modern learning community'},
+      {h: 'Smart Classrooms • Strong Values', p: 'Future-ready education with a caring touch'},
+      {h: 'Learn • Play • Lead', p: 'Academics, Sports, and Culture in perfect balance'}
+    ];
+    function rotateHeroText(idx){
+      if (!heroText) return;
+      const l = heroLines[idx % heroLines.length];
+      heroText.querySelector('h2').textContent = l.h;
+      heroText.querySelector('p').textContent  = l.p;
+    }
+
+    // Touch swipe
+    let startX = 0;
+    slidesWrap.addEventListener('touchstart', (e)=> startX = e.touches[0].clientX, {passive:true});
+    slidesWrap.addEventListener('touchend', (e)=>{
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) dx > 0 ? prev() : next();
+    }, {passive:true});
+
+    // Autoplay (pause on hover)
+    function start(){ stop(); timer = setInterval(next, 6000); }
+    function stop(){ if (timer) clearInterval(timer); }
+    heroEl.addEventListener('mouseenter', stop);
+    heroEl.addEventListener('mouseleave', start);
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', ()=>{
+      if (window.scrollY > 400) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    });
+    backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Initialize
+    slides.forEach((s, i) => s.classList.toggle('active', i === 0));
+    renderDots();
+    start();
+  </script>
+</body>
+</html>
